@@ -11,7 +11,8 @@ namespace WebApplication_Resto.Models
         [Key]
         public int IdMesa { get; set; }
         [Display(Name = "Cantidad de personas por mesa: ")]
-        public int Capacidad { get; set; }
+        [EnumDataType(typeof(CapacidadPorMesa))]
+        public CapacidadPorMesa Capacidad { get; set; }
         [Display(Name = "Estado de la mesa: ")]
         [EnumDataType(typeof(EstadoMesa))]
         public EstadoMesa EstadoM { get; set; }

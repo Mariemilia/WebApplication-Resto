@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebApplication_Resto.Models.ReservaHecha>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MesasReservadas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DniTitular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreTitular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraReserva)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MesasReservadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DniTitular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreTitular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraReserva)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdReserva">Modificar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdReserva">Detalles de la reserva</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdReserva">Eliminar reserva</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

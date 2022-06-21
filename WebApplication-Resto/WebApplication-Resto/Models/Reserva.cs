@@ -16,11 +16,9 @@ namespace WebApplication_Resto.Models
         [Display(Name = "Confirmación de la reserva: ")]
         [EnumDataType(typeof(EstadoReserva))]
         public EstadoReserva EstadoR { get; set; }
-        [Display(Name = "Fecha de la reserva: ")]
-        [EnumDataType(typeof(DiasAtencion))]
-        public DiasAtencion FechaReserva { get; set; }
-        [Display(Name = "Hora de la reserva: ")]
-        [EnumDataType(typeof(Horario))]
-        public Horario HoraReserva { get; set; }
+        [Display(Name = "Fecha y hora de la reserva: ")]
+       
+        public DateTime FechaReserva { get; set; }
+    
     }
 }

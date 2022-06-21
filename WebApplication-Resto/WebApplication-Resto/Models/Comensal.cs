@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using static WebApplication_Resto.Models.Validations;
 
 namespace WebApplication_Resto.Models
 {
@@ -22,9 +23,9 @@ namespace WebApplication_Resto.Models
         [Required(ErrorMessage = "El campo no puede quedar vacío.")]
         [Range(90000, 100000000, ErrorMessage = "El documento debe tener al menos 6 caracteres y como máximo 9.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "El documento solo debe contener números.")]
-        //[DniExistsAtributte]
+        [DniExistsAtributte]
         [Display(Name = "DNI: ")]
-        public int IdComensal { get; set; }
+        public int Dni { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Teléfono de contacto inválido.")]
@@ -37,7 +38,6 @@ namespace WebApplication_Resto.Models
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "El E-mail no es válido.")]
         [Display(Name = "Correo Electrónico")]
         public string Email { get; set; }
-        public Reserva Reserva { get; set; }
 
     }
 }
