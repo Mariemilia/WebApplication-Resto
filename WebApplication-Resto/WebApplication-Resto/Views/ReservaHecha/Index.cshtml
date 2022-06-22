@@ -31,9 +31,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.FechaReserva)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraReserva)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -58,9 +56,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FechaReserva)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraReserva)
-            </td>
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdReserva">Modificar</a> |
                 <a asp-action="Details" asp-route-id="@item.IdReserva">Detalles de la reserva</a> |
