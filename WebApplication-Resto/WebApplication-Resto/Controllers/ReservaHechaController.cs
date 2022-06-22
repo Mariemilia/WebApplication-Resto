@@ -19,31 +19,55 @@ namespace WebApplication_Resto.Controllers
         }
 
         // GET: ReservaHecha
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching = "", int pg = 1)
         {
-            return View(await _context.ReservaHecha.ToListAsync());
-        }
 
-        // GET: ReservaHecha/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            var data2 = _context.ReservaHecha.ToList();
+            if (!string.IsNullOrEmpty(searching))
             {
-                return NotFound();
-            }
+                data2 = (await _context.ReservaHecha.Where(x => x.DniTitular.ToString().Contains(searching) || searching == null).ToListAsync());
 
-            var reservaHecha = await _context.ReservaHecha
-                .FirstOrDefaultAsync(m => m.IdReserva == id);
-            if (reservaHecha == null)
+            }
+            const int pageSize = 3;
+            if (pg < 1)
             {
-                return NotFound();
+                pg = 1;
             }
-
-            return View(reservaHecha);
+            int recsCount = data2.Count();
+            var paginado = new Paginado(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            data2 = data2.Skip(recSkip).Take(paginado.PageSize).ToList();
+            ViewBag.Paginado = paginado;
+            ViewBag.CurrentSearching = searching;
+            return View(data2);
         }
+            /*
+            // GET: ReservaHecha
+            public async Task<IActionResult> Index()
+            {
+                return View(await _context.ReservaHecha.ToListAsync());
+            }
+            */
+            // GET: ReservaHecha/Details/5
 
-        // GET: ReservaHecha/Create
-        public IActionResult Create()
+            public async Task<IActionResult> Details(int? id)
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var reservaHecha = await _context.ReservaHecha.FirstOrDefaultAsync(m => m.IdReserva == id);
+                if (reservaHecha == null)
+                {
+                    return NotFound();
+                }
+
+                return View(reservaHecha);
+            }
+            
+            // GET: ReservaHecha/Create
+            public IActionResult Create()
         {
             return View();
         }

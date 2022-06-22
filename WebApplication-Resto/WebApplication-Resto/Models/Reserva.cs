@@ -17,8 +17,6 @@ namespace WebApplication_Resto.Models
         [EnumDataType(typeof(EstadoReserva))]
         public EstadoReserva EstadoR { get; set; }
         [Display(Name = "Fecha y hora de la reserva: ")]
-       
         public DateTime FechaReserva { get; set; }
-    
     }
 }
