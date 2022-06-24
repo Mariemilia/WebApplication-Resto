@@ -2,98 +2,63 @@
 
 @{
     ViewData["Title"] = "Create";
-    //List<SelectListItem> ReservaItems = new List<SelectListItem>();
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*if (ViewBag.EsValido == true)
-{
-    <div class="alert alrt-warnins alert-danger fade show" role="alert">
-        <strong>¿Atención! @TempData["AlertMessage"]</strong>
-    </div>
 
-    <section class="py-0 text-white">
-        <div class="container py-4 bg-success bg-gradient">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1>Registro de reservas</h1>
-                    <p class="lead mb-0"><i>Sistema de gestión administrativa.</i></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br />
+<h1>Create</h1>
 
-<h4>Confirmación de reservas</h4>
+<h4>ReservaHecha</h4>
 <hr />
-  <h6 class="text-success">IMPORTANTE: Una vez confirmada la reserva, solo podrá cancelarla con 24 hs. de anticipación.</h6>
-<hr />
-  <div class="row">
+<div class="row">
     <div class="col-md-4">
-       <form asp-action="Create">
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <div class="form-group">
-              <label asp-for="IdMedico" class="control-label"></label>
-              <br />
-
-              @Html.DropDownList("IdReserva", (IEnumerable<SelectListItem>)ViewBag.ReservaItems)
-              <div class="form-group">
-                  @Html.LabelFor(p => p.Dn)
-                  @Html.TextBoxFor(p => p.Dni, "", new { @class = "form-control" })
-                  @Html.ValidationMessageFor(p => p.Dni, "", new { @class = "text-danger" })
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DniTitular" class="control-label"></label>
+                <input asp-for="DniTitular" class="form-control" />
+                <span asp-validation-for="DniTitular" class="text-danger"></span>
             </div>
-            <div class="form"
-*@
-                                                                                               <h1>Create</h1>
+            <div class="form-group">
+                <label asp-for="FechaR" class="control-label"></label>
+                <input asp-for="FechaR" class="form-control" />
+                <span asp-validation-for="FechaR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoR" class="control-label"></label>
+                <select asp-for="EstadoR" class="form-control"></select>
+                <span asp-validation-for="EstadoR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdComensal" class="control-label"></label>
+                <input asp-for="IdComensal" class="form-control" />
+                <span asp-validation-for="IdComensal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoTitular" class="control-label"></label>
+                <input asp-for="ApellidoTitular" class="form-control" />
+                <span asp-validation-for="ApellidoTitular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantComensales" class="control-label"></label>
+                <input asp-for="CantComensales" class="form-control" />
+                <span asp-validation-for="CantComensales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaReserva" class="control-label"></label>
+                <input asp-for="FechaReserva" class="form-control" />
+                <span asp-validation-for="FechaReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
-                                                                                               <h4>ReservaHecha</h4>
-                                                                                               <hr />
-                                                                                               <div class="row">
-                                                                                                   <div class="col-md-4">
-                                                                                                       <form asp-action="Create">
-                                                                                                           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="FechaR" class="control-label"></label>
-                                                                                                               <input asp-for="FechaR" class="form-control" />
-                                                                                                               <span asp-validation-for="FechaR" class="text-danger"></span>
-                                                                                                           </div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="MesasReservadas" class="control-label"></label>
-                                                                                                               <input asp-for="MesasReservadas" class="form-control" />
-                                                                                                               <span asp-validation-for="MesasReservadas" class="text-danger"></span>
-                                                                                                           </div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="DniTitular" class="control-label"></label>
-                                                                                                               <input asp-for="DniTitular" class="form-control" />
-                                                                                                               <span asp-validation-for="DniTitular" class="text-danger"></span>
-                                                                                                           </div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="NombreTitular" class="control-label"></label>
-                                                                                                               <input asp-for="NombreTitular" class="form-control" />
-                                                                                                               <span asp-validation-for="NombreTitular" class="text-danger"></span>
-                                                                                                           </div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="EstadoR" class="control-label"></label>
-                                                                                                               <select asp-for="EstadoR" class="form-control"></select>
-                                                                                                               <span asp-validation-for="EstadoR" class="text-danger"></span>
-                                                                                                           </div>
-                                                                                                           <div class="form-group">
-                                                                                                               <label asp-for="FechaReserva" class="control-label"></label>
-                                                                                                               <select asp-for="FechaReserva" class="form-control"></select>
-                                                                                                               <span asp-validation-for="FechaReserva" class="text-danger"></span>
-                                                                                                           </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-                                                                                                           <div class="form-group">
-                                                                                                               <input type="submit" value="Create" class="btn btn-primary" />
-                                                                                                           </div>
-                                                                                                       </form>
-                                                                                                   </div>
-                                                                                               </div>
-
-                                                                                               <div>
-                                                                                                   <a asp-action="Index">Back to List</a>
-                     </div>
-
-            @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            }
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

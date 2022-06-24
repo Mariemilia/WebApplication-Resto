@@ -14,24 +14,26 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FechaR)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MesasReservadas)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.DniTitular)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreTitular)
+                @Html.DisplayNameFor(model => model.FechaR)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EstadoR)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.IdComensal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoTitular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantComensales)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FechaReserva)
             </th>
-            
             <th></th>
         </tr>
     </thead>
@@ -39,28 +41,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MesasReservadas)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.DniTitular)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreTitular)
+                @Html.DisplayFor(modelItem => item.FechaR)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EstadoR)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.IdComensal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoTitular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantComensales)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FechaReserva)
             </td>
-            
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdReserva">Modificar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdReserva">Detalles de la reserva</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdReserva">Eliminar reserva</a>
+                <a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdReserva">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdReserva">Delete</a>
             </td>
         </tr>
 }

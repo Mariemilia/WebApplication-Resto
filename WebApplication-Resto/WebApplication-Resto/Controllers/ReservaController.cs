@@ -21,7 +21,7 @@ namespace WebApplication_Resto.Controllers
         // GET: Reserva
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RegistroReservas.ToListAsync());
+            return View(await _context.ReservaHecha.ToListAsync());
         }
 
         // GET: Reserva/Details/5
@@ -32,7 +32,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.RegistroReservas
+            var reserva = await _context.ReservaHecha
                 .FirstOrDefaultAsync(m => m.IdReserva == id);
             if (reserva == null)
             {
@@ -72,7 +72,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.RegistroReservas.FindAsync(id);
+            var reserva = await _context.ReservaHecha.FindAsync(id);
             if (reserva == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.RegistroReservas
+            var reserva = await _context.ReservaHecha
                 .FirstOrDefaultAsync(m => m.IdReserva == id);
             if (reserva == null)
             {
@@ -138,15 +138,15 @@ namespace WebApplication_Resto.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reserva = await _context.RegistroReservas.FindAsync(id);
-            _context.RegistroReservas.Remove(reserva);
+            var reserva = await _context.ReservaHecha.FindAsync(id);
+            _context.ReservaHecha.Remove(reserva);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReservaExists(int id)
         {
-            return _context.RegistroReservas.Any(e => e.IdReserva == id);
+            return _context.ReservaHecha.Any(e => e.IdReserva == id);
         }
     }
 }

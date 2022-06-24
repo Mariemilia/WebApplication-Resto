@@ -53,7 +53,7 @@ namespace WebApplication_Resto.Models
                 using (var context = new RestoDatabaseContext())
                 {
                     int IdReserva = (int)value;
-                    if (context.RegistroReservas.Any(e => e.IdReserva == IdReserva)) 
+                    if (context.ReservaHecha.Any(e => e.IdReserva == IdReserva)) 
                     {
                         return new ValidationResult("La reserva ya está registrada en el sistema.");
                     }

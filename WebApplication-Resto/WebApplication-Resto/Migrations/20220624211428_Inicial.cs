@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication_Resto.Migrations
 {
@@ -13,7 +14,7 @@ namespace WebApplication_Resto.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Apellido = table.Column<string>(maxLength: 30, nullable: false),
-                    IdComensal = table.Column<int>(nullable: false),
+                    Dni = table.Column<int>(nullable: false),
                     NroCelular = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: false)
                 },
@@ -23,37 +24,23 @@ namespace WebApplication_Resto.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Mesas",
-                columns: table => new
-                {
-                    IdMesa = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Capacidad = table.Column<int>(nullable: false),
-                    EstadoM = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Mesas", x => x.IdMesa);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RegistroReservas",
+                name: "Reservas",
                 columns: table => new
                 {
                     IdReserva = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreTitular = table.Column<string>(nullable: true),
-                    EstadoR = table.Column<int>(nullable: false),
-                    FechaReserva = table.Column<int>(nullable: false),
-                    HoraReserva = table.Column<int>(nullable: false),
+                    IdComensal = table.Column<int>(nullable: false),
+                    ApellidoTitular = table.Column<string>(nullable: true),
+                    CantComensales = table.Column<int>(nullable: false),
+                    FechaReserva = table.Column<DateTime>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    FechaR = table.Column<string>(nullable: true),
-                    MesasReservadas = table.Column<int>(nullable: true),
-                    DniTitular = table.Column<int>(nullable: true)
+                    DniTitular = table.Column<int>(nullable: true),
+                    FechaR = table.Column<DateTime>(nullable: true),
+                    EstadoR = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegistroReservas", x => x.IdReserva);
+                    table.PrimaryKey("PK_Reservas", x => x.IdReserva);
                 });
         }
 
@@ -63,10 +50,7 @@ namespace WebApplication_Resto.Migrations
                 name: "Comensales");
 
             migrationBuilder.DropTable(
-                name: "Mesas");
-
-            migrationBuilder.DropTable(
-                name: "RegistroReservas");
+                name: "Reservas");
         }
     }
 }

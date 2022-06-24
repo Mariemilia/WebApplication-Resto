@@ -19,55 +19,31 @@ namespace WebApplication_Resto.Controllers
         }
 
         // GET: ReservaHecha
-        public async Task<IActionResult> Index(string searching = "", int pg = 1)
+        public async Task<IActionResult> Index()
         {
-
-            var data2 = _context.ReservaHecha.ToList();
-            if (!string.IsNullOrEmpty(searching))
-            {
-                data2 = (await _context.ReservaHecha.Where(x => x.DniTitular.ToString().Contains(searching) || searching == null).ToListAsync());
-
-            }
-            const int pageSize = 3;
-            if (pg < 1)
-            {
-                pg = 1;
-            }
-            int recsCount = data2.Count();
-            var paginado = new Paginado(recsCount, pg, pageSize);
-            int recSkip = (pg - 1) * pageSize;
-            data2 = data2.Skip(recSkip).Take(paginado.PageSize).ToList();
-            ViewBag.Paginado = paginado;
-            ViewBag.CurrentSearching = searching;
-            return View(data2);
+            return View(await _context.ReservaHecha.ToListAsync());
         }
-            /*
-            // GET: ReservaHecha
-            public async Task<IActionResult> Index()
+
+        // GET: ReservaHecha/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
-                return View(await _context.ReservaHecha.ToListAsync());
+                return NotFound();
             }
-            */
-            // GET: ReservaHecha/Details/5
 
-            public async Task<IActionResult> Details(int? id)
+            var reservaHecha = await _context.ReservaHecha
+                .FirstOrDefaultAsync(m => m.IdReserva == id);
+            if (reservaHecha == null)
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-
-                var reservaHecha = await _context.ReservaHecha.FirstOrDefaultAsync(m => m.IdReserva == id);
-                if (reservaHecha == null)
-                {
-                    return NotFound();
-                }
-
-                return View(reservaHecha);
+                return NotFound();
             }
-            
-            // GET: ReservaHecha/Create
-            public IActionResult Create()
+
+            return View(reservaHecha);
+        }
+
+        // GET: ReservaHecha/Create
+        public IActionResult Create()
         {
             return View();
         }
@@ -77,7 +53,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FechaR,MesasReservadas,DniTitular,IdReserva,NombreTitular,EstadoR,FechaReserva,HoraReserva")] ReservaHecha reservaHecha)
+        public async Task<IActionResult> Create([Bind("DniTitular,FechaR,EstadoR,IdReserva,IdComensal,ApellidoTitular,CantComensales,FechaReserva")] ReservaHecha reservaHecha)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +85,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FechaR,MesasReservadas,DniTitular,IdReserva,NombreTitular,EstadoR,FechaReserva,HoraReserva")] ReservaHecha reservaHecha)
+        public async Task<IActionResult> Edit(int id, [Bind("DniTitular,FechaR,EstadoR,IdReserva,IdComensal,ApellidoTitular,CantComensales,FechaReserva")] ReservaHecha reservaHecha)
         {
             if (id != reservaHecha.IdReserva)
             {

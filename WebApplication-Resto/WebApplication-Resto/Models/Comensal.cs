@@ -30,13 +30,13 @@ namespace WebApplication_Resto.Models
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Teléfono de contacto inválido.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "El teléfono solo debe contener números.")]
-        [Display(Name = "Telefono de Contacto")]
+        [Display(Name = "Telefono de contacto: ")]
         public int NroCelular { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "El campo no puede quedar vacío.")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "El E-mail no es válido.")]
-        [Display(Name = "Correo Electrónico")]
+        [Display(Name = "Correo electrónico: ")]
         public string Email { get; set; }
 
     }

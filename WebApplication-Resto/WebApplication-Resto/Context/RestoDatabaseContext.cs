@@ -19,12 +19,11 @@ namespace WebApplication_Resto.Models
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-FK65H1A;Database=RestauranteDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-V5NCH6A;Database=RestauranteDB;Trusted_Connection=True;");
         }
 
         public DbSet<Comensal> Comensales { get; set; }
-        public DbSet<Reserva> RegistroReservas { get; set; }
-        public DbSet<Mesa> Mesas { get; set; }
+        public DbSet<Reserva> Reservas { get; set; }
         public DbSet<WebApplication_Resto.Models.ReservaHecha> ReservaHecha { get; set; }
     }
 }
