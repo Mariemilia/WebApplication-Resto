@@ -2,18 +2,34 @@
 
 @{
     ViewData["Title"] = "Modificar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<section class="py-0 text-white">
+    <div class="container py-4 bg-success bg-gradient">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>Reservas</h1>
+                <p class="lead mb-0"><i>Sistema de gestión administrativa</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
 
-<h4>Reserva</h4>
+<h4>Modificar reserva</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdReserva" />
+            <div class="form-group">
+                @Html.LabelFor(r => r.IdComensal)
+                @Html.TextBoxFor(r => r.IdComensal, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.IdComensal, "", new { @class = "text-danger" })
+            </div>
             <div class="form-group">
                 <label asp-for="ApellidoTitular" class="control-label"></label>
                 <input asp-for="ApellidoTitular" class="form-control" />
@@ -26,18 +42,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaReserva" class="control-label"></label>
-                <select> asp-for="FechaReserva" class="form-control" /> </select>
+                <select asp-for="FechaReserva" class="form-control"> </select>
                 <span asp-validation-for="FechaReserva" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                <label asp-for="EstadoR" class="control-label"></label>
+                <select asp-for="EstadoR" class="form-control" asp-items="Html.GetEnumSelectList<EstadoReserva>()">
+                    <option selected="selected" value="">Confirme la reserva por favor.</option>
+                </select>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

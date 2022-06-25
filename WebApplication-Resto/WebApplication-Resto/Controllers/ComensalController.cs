@@ -19,9 +19,27 @@ namespace WebApplication_Resto.Controllers
         }
 
         // GET: Comensal
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching = "", int pg = 1)
         {
-            return View(await _context.Comensales.ToListAsync());
+            List<Comensal> data2 = _context.Comensales.ToList();
+            if (!string.IsNullOrEmpty(searching))
+            {
+                data2 = await _context.Comensales.Where(x => x.Apellido.Contains(searching) || x.Dni.ToString().Contains(searching) || searching == null).ToListAsync();
+
+            }
+            const int pageSize = 3;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int recsCount = data2.Count();
+            var paginado = new Paginado(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            data2 = data2.Skip(recSkip).Take(paginado.PageSize).ToList();
+            ViewBag.Paginado = paginado;
+            ViewBag.CurrentSearching = searching;
+            return View(data2);
+            //return View(await _context.Comensales.ToListAsync());
         }
 
         // GET: Comensal/Details/5
@@ -134,7 +152,7 @@ namespace WebApplication_Resto.Controllers
         }
 
         // POST: Comensal/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Borrar")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -2,16 +2,48 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Paginado paginado = new Paginado();
+    int pagNro = 0;
+
+    if (ViewBag.Paginado != null)
+    {
+        paginado = ViewBag.Paginado;
+        pagNro = paginado.CurrentPage;
+    }
+
+    string currentSearching = ViewBag.CurrentSearching;
 }
 
-<h1>Index</h1>
+<section class="py-0 text-white">
+    <div class="container py-4 bg-success bg-gradient">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>Comensales registrados en el sistema</h1>
+                <p class="lead mb-0"><i>Sistema de gestión administrativa</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+
+<h4>Alta de usuario</h4>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-primary">Registrarse</a>
 </p>
-<table class="table">
-    <thead>
+<br />
+<p>
+    @using (@Html.BeginForm("Index", "Comensal", FormMethod.Get))
+    {
+        <b>Filtrar usuarios por:</b>
+        @Html.TextBox("searching", "", new { placeholder = "Apellido o DNI", @class = "form-input" })
+        <input type="submit" value="Search" />
+        <a asp-action="Index" class="btn btn-outline-secondary">Ver todos los usuarios registrados</a>}
+</p>
+
+<table class="table table-hover table-bordered">
+    <thead class="table-success">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Apellido)
@@ -25,30 +57,72 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th></th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dni)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NroCelular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NroCelular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-outline-warning btn-sm btn " title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-outline-info btn-sm btn " title="Detalles">
+                        <i class="fas fa-info-circle"></i>
+                    </a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-outline-danger btn-sm btn " title="Eliminar">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Modificar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>*@
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+<div class="container">
+
+    @if (paginado.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            @if (paginado.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Comensal" asp-action="Index" asp-route-searching="@(currentSearching)" asp-route-pg="1">Primero</a>
+                    <a class="page-link" asp-controller="Comensal" asp-action="Index" asp-route-searching="@(currentSearching)" asp-route-pg="@(paginado.CurrentPage-1)">Anterior</a>
+                </li>
+            }
+            @for (var pag = paginado.StartPage; pag <= paginado.EndPage; pag++)
+            {
+                <li class="page-item @(pag==paginado.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-controller="Comensal" asp-action="Index" asp-route-searching="@(currentSearching)" asp-route-pg="@pag">@pag</a>
+                </li>
+            }
+            @if (paginado.CurrentPage < paginado.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Comensal" asp-action="Index" asp-route-searching="@(currentSearching)" asp-route-pg="@(paginado.CurrentPage+1)">Siguiente</a>
+                    <a class="page-link" asp-controller="Comensal" asp-action="Index" asp-route-searching="@(currentSearching)" asp-route-pg="@(paginado.TotalPages)">Ultimo</a>
+                </li>
+            }
+        </ul>}
+</div>
+

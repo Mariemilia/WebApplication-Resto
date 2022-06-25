@@ -20,6 +20,7 @@ namespace WebApplication_Resto.Models
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "El apellido solo debe contener letras.")]
         [Display(Name = "Apellido: ")]
         public string Apellido { get; set; }
+
         [Required(ErrorMessage = "El campo no puede quedar vacío.")]
         [Range(90000, 100000000, ErrorMessage = "El documento debe tener al menos 6 caracteres y como máximo 9.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "El documento solo debe contener números.")]

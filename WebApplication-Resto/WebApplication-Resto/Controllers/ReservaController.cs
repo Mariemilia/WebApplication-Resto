@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication_Resto.Models;
 
@@ -19,9 +16,34 @@ namespace WebApplication_Resto.Controllers
         }
 
         // GET: Reserva
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.ReservaHecha.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string searching = "", int pg = 1)
         {
-            return View(await _context.ReservaHecha.ToListAsync());
+            System.Collections.Generic.List<Reserva> data2 = _context.Reservas.ToList();
+            if (!string.IsNullOrEmpty(searching))
+            {
+                data2 = await _context.Reservas.Where(x => x.ApellidoTitular.Contains(searching) || x.DniTitular.ToString().Contains(searching) || searching == null).ToListAsync();
+
+            }
+            const int pageSize = 3;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int recsCount = data2.Count();
+            var paginado = new Paginado(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            data2 = data2.Skip(recSkip).Take(paginado.PageSize).ToList();
+            ViewBag.Paginado = paginado;
+            ViewBag.CurrentSearching = searching;
+            return View(data2);
+
+
+            //return View(await _context.Reservas.Where(x => x.DniTitular.Contains(searching) || x.ApellidoTitular.ToString().Contains(searching) || searching == null).ToListAsync());
         }
 
         // GET: Reserva/Details/5
@@ -33,7 +55,7 @@ namespace WebApplication_Resto.Controllers
             }
 
             var reserva = await _context.ReservaHecha
-                .FirstOrDefaultAsync(m => m.IdReserva == id);
+                .FirstOrDefaultAsync(r => r.IdReserva == id);
             if (reserva == null)
             {
                 return NotFound();
@@ -53,7 +75,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdReserva,NombreTitular,EstadoR,FechaReserva,HoraReserva")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("IdReserva,ApellidoTitular,EstadoR,FechaReserva")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +107,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,NombreTitular,EstadoR,FechaReserva,HoraReserva")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,ApellidoTitular,EstadoR,FechaReserva")] Reserva reserva)
         {
             if (id != reserva.IdReserva)
             {
@@ -134,7 +156,7 @@ namespace WebApplication_Resto.Controllers
         }
 
         // POST: Reserva/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Borrar")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

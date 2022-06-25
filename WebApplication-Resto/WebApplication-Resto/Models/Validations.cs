@@ -39,13 +39,12 @@ namespace WebApplication_Resto.Models
                     }
                     else
                     {
-                        return new ValidationResult("El paciente no está registrado en sistema. Deberá registrarse.");
+                        return new ValidationResult("El usuario no está registrado en sistema. Deberá registrarse.");
                     }
                 }
                 
             }
         }
-
         public class ReservaExistsAtributte : ValidationAttribute
         {
             protected override ValidationResult IsValid(object value, ValidationContext validationContext)

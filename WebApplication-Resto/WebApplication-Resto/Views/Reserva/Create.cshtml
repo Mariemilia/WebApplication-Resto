@@ -1,44 +1,75 @@
 ﻿@model WebApplication_Resto.Models.Reserva
 
 @{
-    ViewData["Title"] = "Nueva Reserva";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section class="py-0 text-white">
+    <div class="container py-4 bg-success bg-gradient">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>Hacer una reserva</h1>
+                <p class="lead mb-0"><i>Sistema de gestión de reservas</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
 
-<h1>Create</h1>
-
-<h4>Reserva</h4>
+<h4>Alta de reservas</h4>
+<hr />
+<h6 class="text-success">IMPORTANTE: Cada reserva debe ser confirmada o cancelada con 24 hs. de anticipación.</h6>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ApellidoTitular" class="control-label"></label>
-                <input asp-for="ApellidoTitular" class="form-control" />
-                <span asp-validation-for="ApellidoTitular" class="text-danger"></span>
+                @Html.LabelFor(r => r.DniTitular)
+                @Html.TextBoxFor(r => r.DniTitular, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.DniTitular, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="CantComensales" class="control-label"></label>
+                @Html.LabelFor(r => r.ApellidoTitular)
+                @Html.TextBoxFor(r => r.ApellidoTitular, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ApellidoTitular, "", new { @class = "text-danger" })
+                @*<label asp-for="ApellidoTitular" class="control-label"></label>
+        <input asp-for="ApellidoTitular" class="form-control" />
+        <span asp-validation-for="ApellidoTitular" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(r => r.CantComensales)
+                @Html.TextBoxFor(r => r.CantComensales, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.CantComensales, "", new { @class = "text-danger" })
+                @*<label asp-for="CantComensales" class="control-label"></label>
                 <input asp-for="CantComensales" class="form-control" />
-                <span asp-validation-for="CantComensales" class="text-danger"></span>
+                <span asp-validation-for="CantComensales" class="text-danger"></span>*@
             </div>
-             
-            <div class="form-group">
-                <label asp-for="FechaReserva" class="control-label"></label>
+            <div class= "form-group" >
+                @Html.LabelFor(r => r.FechaReserva)
+                @Html.TextBoxFor(r => r.FechaReserva, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.FechaReserva, "", new { @class = "text-danger" })
+                @*<label asp-for="FechaReserva" class="control-label"></label>
                 <input asp-for="FechaReserva" class="form-control" />
-                <span asp-validation-for="FechaReserva" class="text-danger"></span>
+                <span asp-validation-for="FechaReserva" class="text-danger"></span>*@
             </div>
-           
+            <div class= "form-group">
+                @Html.LabelFor(r => r.EstadoR)
+                @*<label asp-for="EstadoR" class="control-label"></label>*@
+                <select asp-for="EstadoR" class="form-control" asp-items="Html.GetEnumSelectList<EstadoReserva>()">
+                    <option selected="selected" value="">Confirme la reserva por favor.</option>
+                </select>
+                <span asp-validation-for="EstadoR" class="text-danger"></span> 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {
