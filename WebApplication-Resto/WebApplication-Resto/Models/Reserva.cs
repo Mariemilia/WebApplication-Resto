@@ -17,7 +17,7 @@ namespace WebApplication_Resto.Models
         public string ApellidoTitular { get; set; }
 
         //[Required(ErrorMessage = "El campo no puede quedar vacío.")]
-        [DniExistsAtributte]
+        [DniExistsDB]
         [Display(Name = "DNI del titular")]
         public int DniTitular { get; set; }
 

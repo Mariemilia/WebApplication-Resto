@@ -15,10 +15,10 @@ namespace WebApplication_Resto.Models
                 using (var context = new RestoDatabaseContext())
                 {
                     int Dni = (int)value;
-                    if (context.Comensales.Any(e => e.Dni == Dni)) //probar usando any
-                    {
-                        return new ValidationResult("El usuario ya está registrado en el sistema.");
-                    }
+                    //if (context.Comensales.Any(e => e.Dni == Dni)) //probar usando any
+                    //{
+                    //    return new ValidationResult("El usuario ya está registrado en el sistema.");
+                    //}
                 }
                 return ValidationResult.Success;
             }
@@ -68,7 +68,7 @@ namespace WebApplication_Resto.Models
                 DateTime date = DateTime.Now;
                 if (fechaIngresada < date)
                 {
-                    return new ValidationResult("La fecha no puede ser menor al día actual");
+                    return new ValidationResult("La fecha no puede ser menor al día actual.");
                 }
                 return ValidationResult.Success;
             }
