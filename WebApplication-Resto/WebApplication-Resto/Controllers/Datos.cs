@@ -14,10 +14,10 @@ namespace WebApplication_Resto.Controllers
         }
         public IActionResult Index()
         {
-            ViewData["CantidadReservas"] = _context.ReservaHecha.Count();
+            ViewData["CantidadReservas"] = _context.Reservas.Count();
             ViewData["CantidadComensales"] = _context.Comensales.Count();
             
-            var data = _context.ReservaHecha.GroupBy(info => info.IdComensal)
+            var data = _context.Reservas.GroupBy(info => info.IdComensal)
                         .Select(group => new
                         {
                             Metric = group.Key,

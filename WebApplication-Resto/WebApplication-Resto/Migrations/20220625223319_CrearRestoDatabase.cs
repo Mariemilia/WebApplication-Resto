@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication_Resto.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class CrearRestoDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,13 +30,13 @@ namespace WebApplication_Resto.Migrations
                     IdReserva = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdComensal = table.Column<int>(nullable: false),
-                    ApellidoTitular = table.Column<string>(nullable: true),
+                    ApellidoTitular = table.Column<string>(maxLength: 30, nullable: false),
+                    DniTitular = table.Column<int>(nullable: false),
+                    EstadoR = table.Column<int>(nullable: false),
                     CantComensales = table.Column<int>(nullable: false),
                     FechaReserva = table.Column<DateTime>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    DniTitular = table.Column<int>(nullable: true),
-                    FechaR = table.Column<DateTime>(nullable: true),
-                    EstadoR = table.Column<int>(nullable: true)
+                    EstadoReserva = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

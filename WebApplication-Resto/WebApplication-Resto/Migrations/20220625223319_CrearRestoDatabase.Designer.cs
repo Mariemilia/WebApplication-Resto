@@ -10,14 +10,14 @@ using WebApplication_Resto.Models;
 namespace WebApplication_Resto.Migrations
 {
     [DbContext(typeof(RestoDatabaseContext))]
-    [Migration("20220624211428_Inicial")]
-    partial class Inicial
+    [Migration("20220625223319_CrearRestoDatabase")]
+    partial class CrearRestoDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.25")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -56,7 +56,9 @@ namespace WebApplication_Resto.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApellidoTitular")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("CantComensales")
                         .HasColumnType("int");
@@ -64,6 +66,12 @@ namespace WebApplication_Resto.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DniTitular")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstadoR")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
@@ -82,14 +90,8 @@ namespace WebApplication_Resto.Migrations
                 {
                     b.HasBaseType("WebApplication_Resto.Models.Reserva");
 
-                    b.Property<int>("DniTitular")
+                    b.Property<int>("EstadoReserva")
                         .HasColumnType("int");
-
-                    b.Property<int>("EstadoR")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FechaR")
-                        .HasColumnType("datetime2");
 
                     b.HasDiscriminator().HasValue("ReservaHecha");
                 });

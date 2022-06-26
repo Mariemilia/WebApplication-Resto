@@ -24,9 +24,7 @@ namespace WebApplication_Resto.Models
 
         public DbSet<Comensal> Comensales { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
-
-        public DbSet<ReservaHecha> RegistroReservas { get; set; }
-        public DbSet<WebApplication_Resto.Models.ReservaHecha> ReservaHecha { get; set; }
+        //public DbSet<WebApplication_Resto.Models.Reserva> ReservaS { get; set; }
         public object Comensal { get; internal set; }
     }
 }

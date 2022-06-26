@@ -1,7 +1,7 @@
 ﻿@model WebApplication_Resto.Models.Reserva
 
 @{
-    ViewData["Title"] = "Modificar";
+    ViewData["Title"] = "Editar";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,32 +26,37 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdReserva" />
             <div class="form-group">
-                @Html.LabelFor(r => r.IdComensal)
-                @Html.TextBoxFor(r => r.IdComensal, "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(r => r.IdComensal, "", new { @class = "text-danger" })
+                @Html.LabelFor(r => r.DniTitular)
+                @Html.TextBoxFor(r => r.DniTitular, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.DniTitular, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="ApellidoTitular" class="control-label"></label>
-                <input asp-for="ApellidoTitular" class="form-control" />
-                <span asp-validation-for="ApellidoTitular" class="text-danger"></span>
+                @Html.LabelFor(r => r.ApellidoTitular)
+                @Html.TextBoxFor(r => r.ApellidoTitular, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ApellidoTitular, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <label asp-for="CantComensales" class="control-label"></label>
                 <input asp-for="CantComensales" class="form-control" />
                 <span asp-validation-for="CantComensales" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="FechaReserva" class="control-label"></label>
-                <select asp-for="FechaReserva" class="form-control"> </select>
+                @Html.LabelFor(r => r.FechaReserva)
+                <input asp-for="FechaReserva" class="form-control" />
                 <span asp-validation-for="FechaReserva" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EstadoR" class="control-label"></label>
+                @Html.LabelFor(r => r.EstadoR)
+                @*<label asp-for="EstadoR" class="control-label"></label>*@
                 <select asp-for="EstadoR" class="form-control" asp-items="Html.GetEnumSelectList<EstadoReserva>()">
                     <option selected="selected" value="">Confirme la reserva por favor.</option>
                 </select>
+                <span asp-validation-for="EstadoR" class="text-danger"></span>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <div class="form-group">
+                        <input type="submit" value="Reservar" class="btn btn-primary" />
+                    </div>
                 </div>
         </form>
     </div>
@@ -59,7 +64,7 @@
 
 <div>
     <a asp-action="Index">Volver a la lista</a>
-</div>
+</div>>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

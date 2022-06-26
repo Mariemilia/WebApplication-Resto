@@ -52,10 +52,23 @@ namespace WebApplication_Resto.Models
                 using (var context = new RestoDatabaseContext())
                 {
                     int IdReserva = (int)value;
-                    if (context.ReservaHecha.Any(e => e.IdReserva == IdReserva)) 
+                    if (context.Reservas.Any(e => e.IdReserva == IdReserva)) 
                     {
                         return new ValidationResult("La reserva ya está registrada en el sistema.");
                     }
+                }
+                return ValidationResult.Success;
+            }
+        }
+        public class ValidDateAtributte : ValidationAttribute
+        {
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+            {
+                DateTime fechaIngresada = (DateTime)value;
+                DateTime date = DateTime.Now;
+                if (fechaIngresada < date)
+                {
+                    return new ValidationResult("La fecha no puede ser menor al día actual");
                 }
                 return ValidationResult.Success;
             }

@@ -10,8 +10,8 @@ using WebApplication_Resto.Models;
 namespace WebApplication_Resto.Migrations
 {
     [DbContext(typeof(RestoDatabaseContext))]
-    [Migration("20220625191723_InicialDos")]
-    partial class InicialDos
+    [Migration("20220626230419_CasiListo")]
+    partial class CasiListo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,9 +61,11 @@ namespace WebApplication_Resto.Migrations
                     b.Property<int>("CantComensales")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DniTitular")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstadoR")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
@@ -74,21 +76,6 @@ namespace WebApplication_Resto.Migrations
                     b.HasKey("IdReserva");
 
                     b.ToTable("Reservas");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Reserva");
-                });
-
-            modelBuilder.Entity("WebApplication_Resto.Models.ReservaHecha", b =>
-                {
-                    b.HasBaseType("WebApplication_Resto.Models.Reserva");
-
-                    b.Property<int>("DniTitular")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EstadoR")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("ReservaHecha");
                 });
 #pragma warning restore 612, 618
         }

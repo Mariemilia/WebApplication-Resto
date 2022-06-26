@@ -10,8 +10,8 @@ using WebApplication_Resto.Models;
 namespace WebApplication_Resto.Migrations
 {
     [DbContext(typeof(RestoDatabaseContext))]
-    [Migration("20220625193629_PorLasDudas")]
-    partial class PorLasDudas
+    [Migration("20220626203514_ActualizacionesMil")]
+    partial class ActualizacionesMil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,9 @@ namespace WebApplication_Resto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DniTitular")
+                        .HasColumnType("int");
+
                     b.Property<int>("EstadoR")
                         .HasColumnType("int");
 
@@ -84,9 +87,6 @@ namespace WebApplication_Resto.Migrations
             modelBuilder.Entity("WebApplication_Resto.Models.ReservaHecha", b =>
                 {
                     b.HasBaseType("WebApplication_Resto.Models.Reserva");
-
-                    b.Property<int>("DniTitular")
-                        .HasColumnType("int");
 
                     b.Property<int>("EstadoReserva")
                         .HasColumnType("int");

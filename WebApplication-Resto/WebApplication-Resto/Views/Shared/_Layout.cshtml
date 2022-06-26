@@ -18,27 +18,14 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Comensal" asp-action="Index">Registrarse</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Reserva" asp-action="Index">Hacer una reserva</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
+
                 <div class="container d-flex justify-content-center">
                     <div class="row">
 
                         <div class="col-12 d-flex justify-content-center mb-0">
 
                             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="~/Images/resto.png" width="230" height="200" >
+                                <img src="~/Images/resto.png" width="230" height="200">
                             </a>
 
                         </div>
@@ -60,9 +47,6 @@
                                     </li>
                                     <li class="nav-item">
                                         <strong><a class="nav-link text-dark" asp-area="" asp-controller="Reserva" asp-action="Index">Hacer una reserva</a></strong>
-                                    </li>
-                                    <li class="nav-item">
-                                        <strong><a class="nav-link text-dark" asp-area="" asp-controller="ReservaHecha" asp-action="Index">Registro de reservas</a></strong>
                                     </li>
                                 </ul>
                             </div>
@@ -98,21 +82,15 @@
                         <h4 class="mb-3" style="letter-spacing: 2px; color: ghostwhite;"><strong>Enlaces</strong></h4>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-1">
-                                @*<a href="#!" style="color: black;">Frequently Asked Questions</a>*@
+
                                 <a style="color: black;" asp-area="" asp-controller="Comensal" asp-action="Index">Clientes</a>
                             </li>
                             <li class="mb-1">
-                                @*<a href="#!" style="color: black;">Delivery</a>*@
+
                                 <a style="color: black;" asp-area="" asp-controller="Reserva" asp-action="Index">Reservas</a>
                             </li>
                             <li class="mb-1">
-                                @*<a href="#!" style="color: black;">Pricing</a>
-                                        <a style="color: black;" asp-area="" asp-controller="TurnoConsultaMedicas" asp-action="Index">Consulta Médica</a>
-                                    </li>
-                                    <li>
-                                        @*<a href="#!" style="color: black;">Where we deliver?</a>
-                                                        <a style="color: black;" asp-area="" asp-controller="TurnoPracticaMedicas" asp-action="Index">Práctica Médica</a>
-                                                    </li>*@
+
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
@@ -121,7 +99,7 @@
                             <tbody>
                                 <tr>
                                     <td>Lunes - Domingo:</td>
-                                    <td>20:00 hs. - 01:00 hs.</td>
+                                    <td>9:00 hs. - 01:00 hs.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -136,7 +114,6 @@
             <!-- Copyright -->
         </footer>
     </div>
-
     <!-- End of .container -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
@@ -145,14 +122,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-@*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; Restaurante Pepito's - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-    </body>
-    </html>*@
+

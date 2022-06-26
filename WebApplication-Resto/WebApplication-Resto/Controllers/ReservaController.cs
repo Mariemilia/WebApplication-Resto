@@ -15,18 +15,12 @@ namespace WebApplication_Resto.Controllers
             _context = context;
         }
 
-        // GET: Reserva
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.ReservaHecha.ToListAsync());
-        //}
-
-        public async Task<IActionResult> Index(string searching = "", int pg = 1)
+        public async Task<IActionResult> Index(string searching= "", int pg = 1)
         {
-            System.Collections.Generic.List<Reserva> data2 = _context.Reservas.ToList();
+            var data2 = _context.Reservas.ToList();
             if (!string.IsNullOrEmpty(searching))
             {
-                data2 = await _context.Reservas.Where(x => x.ApellidoTitular.Contains(searching) || x.DniTitular.ToString().Contains(searching) || searching == null).ToListAsync();
+                data2 = await _context.Reservas.Where(x => x.ApellidoTitular.Contains(searching) || x.DniTitular.ToString().Contains(searching)).ToListAsync();
 
             }
             const int pageSize = 3;
@@ -41,8 +35,6 @@ namespace WebApplication_Resto.Controllers
             ViewBag.Paginado = paginado;
             ViewBag.CurrentSearching = searching;
             return View(data2);
-
-
             //return View(await _context.Reservas.Where(x => x.DniTitular.Contains(searching) || x.ApellidoTitular.ToString().Contains(searching) || searching == null).ToListAsync());
         }
 
@@ -54,7 +46,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.ReservaHecha
+            var reserva = await _context.Reservas
                 .FirstOrDefaultAsync(r => r.IdReserva == id);
             if (reserva == null)
             {
@@ -75,7 +67,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdReserva,ApellidoTitular,EstadoR,FechaReserva")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("IdReserva,ApellidoTitular,DniTitular,CantComensales,FechaReserva,EstadoR")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +86,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.ReservaHecha.FindAsync(id);
+            var reserva = await _context.Reservas.FindAsync(id);
             if (reserva == null)
             {
                 return NotFound();
@@ -107,7 +99,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,ApellidoTitular,EstadoR,FechaReserva")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,ApellidoTitular,DniTitular,CantComensales,FechaReserva,EstadoR")] Reserva reserva)
         {
             if (id != reserva.IdReserva)
             {
@@ -145,7 +137,7 @@ namespace WebApplication_Resto.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.ReservaHecha
+            var reserva = await _context.Reservas
                 .FirstOrDefaultAsync(m => m.IdReserva == id);
             if (reserva == null)
             {
@@ -156,19 +148,19 @@ namespace WebApplication_Resto.Controllers
         }
 
         // POST: Reserva/Delete/5
-        [HttpPost, ActionName("Borrar")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reserva = await _context.ReservaHecha.FindAsync(id);
-            _context.ReservaHecha.Remove(reserva);
+            var reserva = await _context.Reservas.FindAsync(id);
+            _context.Reservas.Remove(reserva);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReservaExists(int id)
         {
-            return _context.ReservaHecha.Any(e => e.IdReserva == id);
+            return _context.Reservas.Any(e => e.IdReserva == id);
         }
     }
 }

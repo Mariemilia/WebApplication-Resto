@@ -54,16 +54,10 @@ namespace WebApplication_Resto.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApellidoTitular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CantComensales")
                         .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DniTitular")
                         .HasColumnType("int");
@@ -80,18 +74,6 @@ namespace WebApplication_Resto.Migrations
                     b.HasKey("IdReserva");
 
                     b.ToTable("Reservas");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Reserva");
-                });
-
-            modelBuilder.Entity("WebApplication_Resto.Models.ReservaHecha", b =>
-                {
-                    b.HasBaseType("WebApplication_Resto.Models.Reserva");
-
-                    b.Property<int>("EstadoReserva")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("ReservaHecha");
                 });
 #pragma warning restore 612, 618
         }

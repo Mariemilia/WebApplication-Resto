@@ -2,7 +2,7 @@
 
 namespace WebApplication_Resto.Migrations
 {
-    public partial class PorLasDudas : Migration
+    public partial class Segunda : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

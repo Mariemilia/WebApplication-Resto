@@ -2,27 +2,29 @@
 
 namespace WebApplication_Resto.Migrations
 {
-    public partial class ModificacionesTres : Migration
+    public partial class ActualizacionesMil : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
-                name: "DniTitular",
+            migrationBuilder.AlterColumn<string>(
+                name: "ApellidoTitular",
                 table: "Reservas",
-                nullable: false,
+                nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: false);
+                oldType: "nvarchar(30)",
+                oldMaxLength: 30);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "DniTitular",
+                name: "ApellidoTitular",
                 table: "Reservas",
-                type: "nvarchar(max)",
+                type: "nvarchar(30)",
+                maxLength: 30,
                 nullable: false,
-                oldClrType: typeof(int));
+                oldClrType: typeof(string),
+                oldNullable: true);
         }
     }
 }

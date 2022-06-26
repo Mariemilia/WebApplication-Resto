@@ -10,8 +10,8 @@ using WebApplication_Resto.Models;
 namespace WebApplication_Resto.Migrations
 {
     [DbContext(typeof(RestoDatabaseContext))]
-    [Migration("20220625204047_ModificacionesDos")]
-    partial class ModificacionesDos
+    [Migration("20220625230516_Segunda")]
+    partial class Segunda
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,9 @@ namespace WebApplication_Resto.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApellidoTitular")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("CantComensales")
                         .HasColumnType("int");
@@ -65,8 +67,8 @@ namespace WebApplication_Resto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DniTitular")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DniTitular")
+                        .HasColumnType("int");
 
                     b.Property<int>("EstadoR")
                         .HasColumnType("int");
