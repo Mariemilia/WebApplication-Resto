@@ -1,0 +1,35 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>290</x><y>60</y><w>160</w><h>110</h></coordinates><panel_attributes>Restaurante
+--
+- razonSocial: String
+- direccion: String
+- contacto: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>350</y><w>190</w><h>110</h></coordinates><panel_attributes>Comensal
+--
+- idComensal: int
+- apellido: String
+- nroCelular: int
+- mail: String
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>250</y><w>180</w><h>140</h></coordinates><panel_attributes>Reserva
+--
+- idReserva: int
+- idComensal: int
+- apellidoComensal: String
+- dniTitular: String
+- cantComensales: int
+- fechaReserva: Date
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>160</y><w>130</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+- registroReservas</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>470</y><w>110</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+EstadoReserva
+--
+_+ CONFIRMADA_
+_+ PRE_RESERVA_
+_+ CANCELADA_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>380</y><w>80</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+- estadoR</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>100</y><w>300</w><h>270</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n
+- clientes</panel_attributes><additional_attributes>260;250;260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>290</y><w>180</w><h>80</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;160;10;160;60</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>380</y><w>200</w><h>60</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>180;40;10;40;10;10</additional_attributes></element></diagram>
