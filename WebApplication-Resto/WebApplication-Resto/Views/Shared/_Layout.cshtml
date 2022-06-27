@@ -25,7 +25,7 @@
                         <div class="col-12 d-flex justify-content-center mb-0">
 
                             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="~/Images/resto.png" width="230" height="200">
+                                <img src="~/images/resto.png" width="230" height="200">
                             </a>
 
                         </div>
@@ -62,58 +62,67 @@
         </main>
     </div>
 
-
-    <br />
     <br />
     <br />
     <div class="container my-5">
-        <footer class="bg-success bg-gradient">
+        <footer class="bg-secondary bg-gradient">
             <div class="container p-4">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4">
                         <h4 class="mb-3" style="letter-spacing: 2px; color: ghostwhite;"><strong>Pepito's Resto</strong></h4>
                         <p style="color: ghostwhite;">
-                            Estamos en Agüero 1023 - casi esquina Córdoba - Recoleta
-
-                            Contactanos:  info.pepitos@gmail.com
-
-                            Líneas rotativas: 47301797
-
-                            Protocolo COVID: Pepito’s cumple con todas las medidas sanitarias con el objetivo de brindarle 
-                            a sus clientes un entorno seguro. Por tal motivo, se prohíbe el ingreso al establecimiento a 
+                            <strong>Estamos en Agüero 1023 - casi esquina Córdoba - Recoleta</strong>
+                            <br />
+                            <strong>Contactanos:</strong>  info.pepitos@gmail.com
+                            <br />
+                            <strong>Líneas rotativas:</strong> 47301797
+                            <br />
+                            <strong>Protocolo COVID:</strong> Pepito’s cumple con todas las medidas sanitarias con el objetivo de brindarle
+                            a sus clientes un entorno seguro. Por tal motivo, se prohíbe el ingreso al establecimiento a
                             aquellas personas que no usen barbijo y/o presenten síntomas compatibles con la enfermedad.
-
-                            Para más información diríjase a https://www.argentina.gob.ar/salud/coronavirus-COVID-19
+                            <br />
+                            Para más información dirigite a <a href="https://www.argentina.gob.ar/salud/coronavirus-COVID-19"><strong>Info Covid-19</strong></a>
                         </p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <h4 class="mb-3" style="letter-spacing: 2px; color: ghostwhite;"><strong>Enlaces</strong></h4>
+                        <h4 class="mb-3" style="letter-spacing: 2px; color: ghostwhite;"><strong>Atajos</strong></h4>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-1">
-
-                                <a style="color: black;" asp-area="" asp-controller="Comensal" asp-action="Index">Clientes</a>
+                                <a style="color: white;" asp-area="" asp-controller="Comensal" asp-action="Index">Clientes</a>
                             </li>
                             <li class="mb-1">
-                                <a style="color: black;" asp-area="" asp-controller="Reserva" asp-action="Index">Reservas</a>
+                                <a style="color: white;" asp-area="" asp-controller="Reserva" asp-action="Index">Reservas</a>
                             </li>
                             <li class="mb-1">
-
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <h4 class="mb-1" style="letter-spacing: 2px; color: ghostwhite;"><strong>Horarios de Atención</strong></h4>
-                        <table class="table" style="color: ghostwhite; border-color: ActiveBorder;">
-                            <tbody>
-                                <tr>
-                                    <td>Lunes - Domingo:</td>
-                                    <td>9:00 hs. - 01:00 hs.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @*<table class="table" style="color: ghostwhite; border-color: ActiveBorder;">*@
+                        <ul class="text-lg-center" style="list-style: none; color: ghostwhite; border-color: ActiveBorder;">
+                            <li>
+                                Lunes a viernes
+                                <br />
+                                de 9:30 hs. a 23:00 hs.
+                            </li>
+                            <li>
+                                Sábados y domingos
+                                <br />
+                                de 18:00 hs. a 01:00 hs.
+                            </li>
+                        </ul>
+                        @*<tr>
+                                <td>Lunes a de 9:30 hs.</td>
+                                <td>viernes a 23:00 hs.</td>
+                                <td>Sábados y de 18:00 hs.</td>
+                                <td>domingos a 01:00 hs.</td>
+                            </tr>
+
+                            </table>*@
                     </div>
                 </div>
             </div>
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="text-center p-3" style="background-color: #ced4da">
                 © 2022 Copyright:
                 @*<a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>*@
                 <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Index">Pepito's Resto</a>

@@ -16,7 +16,7 @@
 }
 
 <section class="py-0 text-white">
-    <div class="container py-4 bg-success bg-gradient">
+    <div class="container py-4 bg-secondary bg-gradient text-white text-center">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
                 <h1>Comensales registrados en el sistema</h1>
@@ -43,8 +43,11 @@
 </p>
 
 <table class="table table-hover table-bordered">
-    <thead class="table-success">
+    <thead class="table-secondary">
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Apellido)
             </th>
@@ -65,34 +68,37 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dni)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NroCelular)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-outline-warning btn-sm btn " title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-outline-info btn-sm btn " title="Detalles">
-                        <i class="fas fa-info-circle"></i>
-                    </a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-outline-danger btn-sm btn " title="Eliminar">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                    @*<a asp-action="Edit" asp-route-id="@item.Id">Modificar</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>*@
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroCelular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-outline-warning btn-sm btn " title="Editar">
+                    <i class="fas fa-edit"></i>
+                </a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn-outline-info btn-sm btn " title="Detalles">
+                    <i class="fas fa-info-circle"></i>
+                </a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-outline-danger btn-sm btn " title="Eliminar">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Modificar</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>

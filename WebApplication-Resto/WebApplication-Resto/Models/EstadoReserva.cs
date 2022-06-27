@@ -3,7 +3,7 @@
     public enum EstadoReserva
     {
         Confirmada,
-        Pendiente,
+        PreReserva,
         Cancelada
     }
 }

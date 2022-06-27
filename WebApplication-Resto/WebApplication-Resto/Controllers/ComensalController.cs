@@ -71,7 +71,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Apellido,Dni,NroCelular,Email")] Comensal comensal)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Dni,NroCelular,Email")] Comensal comensal)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace WebApplication_Resto.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Apellido,Dni,NroCelular,Email")] Comensal comensal)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Dni,NroCelular,Email")] Comensal comensal)
         {
             if (id != comensal.Id)
             {
