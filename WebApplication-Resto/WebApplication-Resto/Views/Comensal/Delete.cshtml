@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="py-0 text-white">
     <div class="container py-4 bg-success bg-gradient">
@@ -16,9 +16,9 @@
 </section>
 <br />
 
-<h4>Borrar</h4>
+<h4>Eliminar</h4>
 
-<h5>¿Está seguro de borrar al comensal de la lista?</h5>
+<h5>¿Está seguro de eliminar al comensal de la lista?</h5>
 <div>
     <hr />
     <dl class="row">
@@ -56,7 +56,7 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
         <a asp-action="Index">Volver a la lista</a>
     </form>
 </div>

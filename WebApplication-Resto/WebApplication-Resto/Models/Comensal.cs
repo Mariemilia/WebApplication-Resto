@@ -39,8 +39,9 @@ namespace WebApplication_Resto.Models
 
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Teléfono de contacto inválido.")]
+        [Range(90000, 10000000000, ErrorMessage = "El teléfono debe tener al menos 6 caracteres y como máximo 10.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "El teléfono solo debe contener números.")]
-        [Display(Name = "Telefono de contacto")]
+        [Display(Name = "Teléfono de contacto")]
         public int NroCelular { get; set; }
 
         [DataType(DataType.EmailAddress)]

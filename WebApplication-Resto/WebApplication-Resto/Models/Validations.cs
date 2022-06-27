@@ -30,7 +30,7 @@ namespace WebApplication_Resto.Models
             {
                 using (var context = new RestoDatabaseContext())
                 {
-                    
+
                     int Dni = (int)value;
                     Boolean documentoExists = context.Comensales.Any(e => e.Dni == Dni);
                     if (documentoExists) //probar usando any
@@ -42,7 +42,7 @@ namespace WebApplication_Resto.Models
                         return new ValidationResult("El usuario no está registrado en sistema. Deberá registrarse.");
                     }
                 }
-                
+
             }
         }
         public class ReservaExistsAtributte : ValidationAttribute
@@ -51,8 +51,9 @@ namespace WebApplication_Resto.Models
             {
                 using (var context = new RestoDatabaseContext())
                 {
+                    //VER CÓMO ARREGLAR LA VALIDACIÓN.
                     int IdReserva = (int)value;
-                    if (context.Reservas.Any(e => e.IdReserva == IdReserva)) 
+                    if (context.Reservas.Any(e => e.IdReserva == IdReserva))
                     {
                         return new ValidationResult("La reserva ya está registrada en el sistema.");
                     }

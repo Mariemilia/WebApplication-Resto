@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApplication_Resto.Models.Reserva>
 
 @{
-    ViewData["Title"] = "Reservas";
+    ViewData["Title"] = "Index";
     //Layout = "~/Views/Shared/_Layout.cshtml";
     Paginado paginado = new Paginado();
     int pagNro = 0;
@@ -29,7 +29,6 @@
 <p>
     <a asp-action="Create" class="btn btn-outline-primary ">Hacer una reserva</a>
 </p>
-<br />
 <p>
     @using (@Html.BeginForm("Index", "Reserva", FormMethod.Get))
         {
@@ -99,7 +98,7 @@
                         <a asp-action="Details" asp-route-id="@item.IdReserva" class="btn-outline-info btn-sm btn " title="Detalles">
                             <i class="fas fa-info-circle"></i>
                         </a> |
-                        <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn-outline-danger btn-sm btn " title="Delete">
+                        <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn-outline-danger btn-sm btn " title="Eliminar">
                             <i class="fas fa-trash-alt"></i>
                         </a>
 

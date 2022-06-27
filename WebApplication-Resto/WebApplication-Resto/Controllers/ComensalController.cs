@@ -142,7 +142,7 @@ namespace WebApplication_Resto.Controllers
             }
 
             var comensal = await _context.Comensales
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(c => c.Id == id);
             if (comensal == null)
             {
                 return NotFound();
@@ -152,7 +152,7 @@ namespace WebApplication_Resto.Controllers
         }
 
         // POST: Comensal/Delete/5
-        [HttpPost, ActionName("Borrar")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

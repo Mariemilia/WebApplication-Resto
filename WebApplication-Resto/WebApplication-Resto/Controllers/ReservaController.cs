@@ -14,7 +14,7 @@ namespace WebApplication_Resto.Controllers
         {
             _context = context;
         }
-
+        // GET: Reserva
         public async Task<IActionResult> Index(string searching= "", int pg = 1)
         {
             var data2 = _context.Reservas.ToList();
@@ -138,7 +138,7 @@ namespace WebApplication_Resto.Controllers
             }
 
             var reserva = await _context.Reservas
-                .FirstOrDefaultAsync(m => m.IdReserva == id);
+                .FirstOrDefaultAsync(r => r.IdReserva == id);
             if (reserva == null)
             {
                 return NotFound();
