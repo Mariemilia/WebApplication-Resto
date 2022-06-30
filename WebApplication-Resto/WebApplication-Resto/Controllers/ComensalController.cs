@@ -109,6 +109,8 @@ namespace WebApplication_Resto.Controllers
             {
                 return NotFound();
             }
+            ModelState.Remove("Dni");
+        //https://stackoverflow.com/questions/41324631/i-want-to-disable-my-custom-validation-in-edit-action-in-asp-net-mvc
 
             if (ModelState.IsValid)
             {

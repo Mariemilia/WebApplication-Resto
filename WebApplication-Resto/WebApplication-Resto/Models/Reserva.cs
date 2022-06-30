@@ -6,17 +6,17 @@ using static WebApplication_Resto.Models.Validations;
 
 namespace WebApplication_Resto.Models
 {
+    [ReservaExists]
     public class Reserva
     {
         [Key]
         public int IdReserva { get; set; }
         public int IdComensal { get; set; }
-
-        //[Required(ErrorMessage ="El campo no puede quedar vacío.")]
+        [Required(ErrorMessage ="El campo no puede quedar vacío.")]
         [Display(Name = "Apellido del titular")]
         public string ApellidoTitular { get; set; }
 
-        //[Required(ErrorMessage = "El campo no puede quedar vacío.")]
+        [Required(ErrorMessage = "El campo no puede quedar vacío.")]
         [DniExistsDB]
         [Display(Name = "DNI del titular")]
         public int DniTitular { get; set; }

@@ -45,16 +45,23 @@ namespace WebApplication_Resto.Models
 
             }
         }
-        public class ReservaExistsAtributte : ValidationAttribute
+        public class ReservaExists : ValidationAttribute
         {
             protected override ValidationResult IsValid(object value, ValidationContext validationContext)
             {
                 using (var context = new RestoDatabaseContext())
                 {
-                    //VER CÓMO ARREGLAR LA VALIDACIÓN.
-                    int IdReserva = (int)value;
-                    if (context.Reservas.Any(e => e.IdReserva == IdReserva))
+                    Reserva r = (Reserva)value;
+                    string Apellido = r.ApellidoTitular;
+                    int Dni = r.DniTitular;
+                    int CantCom = r.CantComensales;
+                    DateTime DiaHora = r.FechaReserva;
+                    EstadoReserva EstRes = r.EstadoR;
+
+                    if (context.Reservas.Any(e => e.ApellidoTitular == Apellido && e.DniTitular == Dni &&
+                     e.CantComensales == CantCom && e.FechaReserva == DiaHora && e.EstadoR == EstRes))
                     {
+                     
                         return new ValidationResult("La reserva ya está registrada en el sistema.");
                     }
                 }

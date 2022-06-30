@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace WebApplication_Resto.Controllers
             _context = context;
         }
         // GET: Reserva
-        public async Task<IActionResult> Index(string searching= "", int pg = 1)
+        public async Task<IActionResult> Index(string searching = "", int pg = 1)
         {
             var data2 = _context.Reservas.ToList();
             if (!string.IsNullOrEmpty(searching))
@@ -113,6 +114,7 @@ namespace WebApplication_Resto.Controllers
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ReservaExists(reserva.IdReserva))
@@ -157,6 +159,38 @@ namespace WebApplication_Resto.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //private bool ReservaExists(Reserva r)
+        //{
+        //    using (var context = new RestoDatabaseContext())
+        //    {
+
+        //        string Apellido = r.ApellidoTitular;
+        //        int Dni = r.DniTitular;
+        //        int CantCom = r.CantComensales;
+        //        DateTime DiaHora = r.FechaReserva;
+        //        EstadoReserva EstRes = r.EstadoR;
+        //        if (context.Reservas.Any(e => e.ApellidoTitular == Apellido && e.DniTitular == Dni &&
+        //         e.CantComensales == CantCom && e.FechaReserva == DiaHora && e.EstadoR == EstRes))
+        //        {
+
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
+        //private string MessageReserva(Reserva r)
+        //{
+        //    if (!ReservaExists(r))
+        //    {
+        //        return "La reserva fue registrada con éxito.";
+        //    }
+        //    else
+        //    {
+        //        return "La reserva ya fue registrada.";
+        //    }
+        //}
 
         private bool ReservaExists(int id)
         {
